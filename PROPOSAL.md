@@ -29,7 +29,7 @@ Greg, will be creating how they will convert their money, while Kenia will be wo
 
 ### How will you use the content from this unit
 - We are using classes for deposit, withdraw and exchanging currency.
-- We are putting account information into dictionaire ,and storing all information into a database. 
+- We are putting account information into dictionaires ,and storing all information into a database. 
 - We are storing the the name of everyone with an account into a json file.
 ### Student 
 - Greg
