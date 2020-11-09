@@ -16,20 +16,15 @@ class Account:
                 amount=input('Enter the amount to deposit: ')
 
     def withdraw(self):
-        amount=(input('Enter the amount to withdraw: '))
-        while True:
-            if amount.isdigit():
-                if(int(amount) >self.balance):
-                    print('Insufficient Balance!')
-                    break
-                else:
-                    self.balance-= int(amount)
-            else:
-                print ("please Input a Number")
-                amount=(input('Enter the amount to withdraw: '))
-
+        amount=int(input('Enter the amount to withdraw:'))
+        if(amount>self.balance):
+            print('Insufficient Balance!')
+        else:
+            self.balance-=amount
+            
     def enquiry(self):
         print('Your Balance = %d' %self.balance)
+
     def add_to_savings(self):
         number=int(input("How much do you want to transfer to Savings Account?"))
         if(number>self.balance):
