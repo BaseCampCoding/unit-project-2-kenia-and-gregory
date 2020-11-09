@@ -7,7 +7,13 @@ In this project, we want to build a banking program. Our program will have diffe
 Prior arts would be Banking apps like Ally Bank, Bank of America, Capital One, Huntington Bank, and Wells Fargo. Our project would work like these banking apps allowing people to make bank account and save there money they deposited and be able to "sign in" to view the money in their account. It would also allow them to convert the money in their account to any currency available like the apps money convertors XE Currency, CalConvert, Currency Convert, My Currency Converter, Valuta+.
 
 ### Core User Workflows:
-In our program, we want a user to be able to deposit and withdraw amounts of money from their account. The user should be able to move money into a savings account. The user can also set up an budget for a week and be notified when they go over the budget. We want the user to be able to create an account with a username and pin and save that information into a database. Next we want to add a feature that converts currency into the currency of other countries. Lastly, the user will be able to schedule payments on specifc days and withdraw from account. 
+- The user can deposit and withdraw money from the bank.
+- The user can move money into a savings account. 
+- The user can also set up an budget for a week and be notified when they go over the budget.
+- We want the user to be able to create an account with a username and pin.
+- Admin can view all account information.
+- The user can converts currency into the currency of other countries.
+- Lastly, the user will be able to schedule payments on specifc days and withdraw from account. 
 
 ### Tuesday-Thursday Daily Goals:
 **Tuesday:**
@@ -17,7 +23,7 @@ On Tuesday we plan on the user to be able to deposit, and withdraw money from th
 On Wednesday We plan on the user being able to set up a budget for the week,and to notify them if they go over the budget. The user should also be able to create an account with a username, and pin or password to save there data into a database. 
 
 **Thursday:**
-On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account
+On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account. 
 
 ### Student 
 - Greg
