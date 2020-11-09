@@ -2,6 +2,7 @@ import buisness_logic as bl
 print('"""""""""""""""""""""""""""""')
 print("WELCOME TO BANK OF BASE CAMP!")
 print('"""""""""""""""""""""""""""""')
+
 while True:
     answer=input(
     """What do you want to do?
@@ -23,6 +24,9 @@ while True:
 
     elif answer == 'Withdraw'.lower():
         bl.account.withdraw()
+    
+    elif answer == "Check Savings".lower():
+        bl.account.add_to_savings()
         
     elif answer == 'Transfer'.lower():
         bl.account.add_to_savings()
