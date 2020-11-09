@@ -9,17 +9,25 @@ while True:
     -View Savings Account
     -Deposit
     -Withdraw
+    -Transfer
     -QUIT
     > """)
     if answer == 'Check Account'.lower():
        bl.account.enquiry()
+    
+    elif answer == 'Check Savings'.lower():
+        bl.account.Savings_enquiry
 
-    elif answer == "Deposit".lower():
+    elif answer == 'Deposit'.lower():
         bl.account.deposit()
 
-    elif answer == "Withdraw".lower():
+    elif answer == 'Withdraw'.lower():
         bl.account.withdraw()
         
+    elif answer == 'Transfer'.lower():
+        bl.account.add_to_savings()
+
+
     elif answer == "Quit".lower():
         print("Goodbye")
         break
