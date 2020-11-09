@@ -5,8 +5,9 @@ class Account:
         print('Your Account is Created.')
 
     def deposit(self):
-        amount=input('Enter the amount to deposit: ')
+        amount = input('Enter the amount to deposit: ')
         while True:
+            amount = round(float(amount), 2)
             if amount.isdigit():
                 self.balance+=float(amount)
                 print(f"Your New Balance = {self.balance} ")
@@ -20,6 +21,7 @@ class Account:
         if(amount>self.balance):
             print('Insufficient Balance!')
         else:
+            amount = round(amount, 2)
             self.balance-=amount
 
     def enquiry(self):
@@ -33,6 +35,7 @@ class Account:
         if(number>self.balance):
             print('Insufficient Balance!')
         else:
+            amount = round(amount, 2)
             self.balance-=number
             self.savings +=number
             print(f"Your New Savings Balance= {self.savings}")
