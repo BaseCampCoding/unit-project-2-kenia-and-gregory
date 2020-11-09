@@ -11,13 +11,16 @@ while True:
     -Withdraw
     -QUIT
     > """)
-    if answer == 'Check Account':
+    if answer == 'Check Account'.lower():
        bl.account.enquiry()
-    elif answer == "Deposit":
+
+    elif answer == "Deposit".lower():
         bl.account.deposit()
-    elif answer == "Withdraw":
+
+    elif answer == "Withdraw".lower():
         bl.account.withdraw()
-    elif answer == "Quit":
+        
+    elif answer == "Quit".lower():
         print("Goodbye")
         break
     
