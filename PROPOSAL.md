@@ -27,6 +27,10 @@ Kenia, will be doing the username and pin or password to save their data, while 
 On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account. 
 Greg, will be creating how they will convert their money, while Kenia will be working on allowing the user to schedule payments
 
+### How will you use the content from this unit
+- We are using classes for deposit, withdraw and exchanging currency.
+- We are putting account information into dictionaire ,and storing all information into a database. 
+- We are storing the the name of everyone with an account into a json file.
 ### Student 
 - Greg
 - Kenia
