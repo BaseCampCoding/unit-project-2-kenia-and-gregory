@@ -8,8 +8,8 @@ class Account:
         amount=input('Enter the amount to deposit: ')
         while True:
             if amount.isdigit():
-                self.balance+=int(amount)
-                print('Your New Balance = %d' %self.balance)
+                self.balance+=float(amount)
+                print(f"Your New Balance = {self.balance} ")
                 break
             else:
                 print ("please Input a Number")
@@ -23,10 +23,10 @@ class Account:
             self.balance-=amount
 
     def enquiry(self):
-        print('Your Balance = %d' %self.balance)
+        print(f"Your Balance = {self.balance}")
 
     def Savings_enquiry(self):
-        print('Your Balance = %d' %self.savings)
+        print(f"Your Balance = {self.savings} ")
 
     def add_to_savings(self):
         number=int(input("How much do you want to transfer to Savings Account? "))
@@ -35,6 +35,6 @@ class Account:
         else:
             self.balance-=number
             self.savings +=number
-            print('Your New Savings Balance= %d' %self.savings)
+            print(f"Your New Savings Balance= {self.savings}")
 
 account = Account()
