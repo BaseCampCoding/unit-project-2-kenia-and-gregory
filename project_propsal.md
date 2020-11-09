@@ -11,13 +11,16 @@ In our program, we want a user to be able to deposit and withdraw amounts of mon
 
 ### Tuesday-Thursday Daily Goals:
 **Tuesday:**
-On Tuesday we plan on the user to be able to deposit, and withdraw money from their acount using a class. The user should also be able to move money into a savings account.
+On Tuesday we plan on the user to be able to deposit, and withdraw money from their acount. The user should also be able to move money into a savings account.
+
 
 **Wednesday:**
-On Wednesday We plan on the user being able to set up a budget for the week,and to notify them if they go over the budget by using a class. The user should also be able to create an account with a username, and pin or password to save there data in a dictionary into a database. 
+On Wednesday We plan on the user being able to set up a budget for the week,and to notify them if they go over the budget. The user should also be able to create an account with a username, and pin or password to save there data into a database. 
+Kenia, will be doing the username and pin or password to save their data, while Greg will be setting up the user to be able to set a budget and notify the user if they go over budget
 
 **Thursday:**
 On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account
+Greg, will be creating how they will convert their money, while Kenia will be working on allowing the user to schedule payments 
 
 ### Student 
 - Greg
