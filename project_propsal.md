@@ -18,3 +18,7 @@ On Wednesday We plan on the user being able to set up a budget for the week,and 
 
 **Thursday:**
 On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account
+
+### Student 
+- Greg
+- Kenia
