@@ -25,6 +25,8 @@ class Account:
     def enquiry(self):
         print('Your Balance = %d' %self.balance)
 
+    def Savings_enquiry(self):
+        print('Your Balance = %d' %self.savings)
 
     def add_to_savings(self):
         number=int(input("How much do you want to transfer to Savings Account? "))
@@ -34,9 +36,5 @@ class Account:
             self.balance-=number
             self.savings +=number
             print('Your New Savings Balance= %d' %self.savings)
-
-    def Savings_enquiry(self):
-        print('Your Balance = %d' %self.savings)
-
 
 account = Account()

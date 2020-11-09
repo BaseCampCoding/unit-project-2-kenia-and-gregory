@@ -31,7 +31,6 @@ while True:
     elif answer == 'Transfer'.lower():
         bl.account.add_to_savings()
 
-
     elif answer == "Quit".lower():
         print("Goodbye")
         break
