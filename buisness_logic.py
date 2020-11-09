@@ -7,9 +7,9 @@ class Account:
     def deposit(self):
         amount = input('Enter the amount to deposit: ')
         while True:
-            amount = round(float(amount), 2)
+            amount = float(amount)
             if amount.isdigit():
-                self.balance+=float(amount)
+                self.balance += float(amount)
                 print(f"Your New Balance = {self.balance} ")
                 break
             else:
@@ -21,8 +21,7 @@ class Account:
         if(amount>self.balance):
             print('Insufficient Balance!')
         else:
-            amount = round(amount, 2)
-            self.balance-=amount
+            self.balance -= amount
 
     def enquiry(self):
         print(f"Your Balance = {self.balance}")
@@ -35,9 +34,8 @@ class Account:
         if(number>self.balance):
             print('Insufficient Balance!')
         else:
-            amount = round(amount, 2)
-            self.balance-=number
-            self.savings +=number
+            self.balance -= number
+            self.savings += number
             print(f"Your New Savings Balance= {self.savings}")
 
 account = Account()

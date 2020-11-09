@@ -26,7 +26,7 @@ while True:
         bl.account.withdraw()
     
     elif answer == "Check Savings".lower():
-        bl.account.add_to_savings()
+        bl.account.Savings_enquiry()
         
     elif answer == 'Transfer'.lower():
         bl.account.add_to_savings()
