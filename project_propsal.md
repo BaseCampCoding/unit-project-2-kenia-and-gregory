@@ -8,3 +8,13 @@ Prior arts would be Banking apps like Ally Bank, Bank of America, Capital One, H
 
 ### Core User Workflows:
 In our program, we want a user to be able to deposit and withdraw amounts of money from their account. The user should be able to move money into a savings account. The user can also set up an budget for a week and be notified when they go over the budget. We want the user to be able to create an account with a username and pin and save that information into a database. Next we want to add a feature that converts currency into the currency of other countries. Lastly, the user will be able to schedule payments on specifc days and withdraw from account. 
+
+### Tuesday-Thursday Daily Goals:
+**Tuesday:**
+On Tuesday we plan on the user to be able to deposit, and withdraw money from their acount. The user should also be able to move money into a savings account.
+
+**Wednesday:**
+On Wednesday We plan on the user being able to set up a budget for the week,and to notify them if they go over the budget. The user should also be able to create an account with a username, and pin or password to save there data into a database. 
+
+##Thursday:**
+On Thursday the application should be able to convert there money from the currency they are using to a currency on any available country. Lastly the user can schedule payments on specific days to withdraw and deposit into their account
