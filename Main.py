@@ -18,7 +18,7 @@ while True:
        bl.account.enquiry()
     
     elif answer == 'Check Savings'.lower():
-        bl.account.Savings_enquiry
+        bl.account.Savings_enquiry()
 
     elif answer == 'Deposit'.lower():
         bl.account.deposit()
