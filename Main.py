@@ -14,7 +14,7 @@ while True:
     >""")
     if acc_option=="Yes".lower():
         name=input("Enter your First Name: ")
-        db.cur.execute("""SELECT Name FROM Account""")
+        db.cur.execute("""SELECT name FROM Account""")
         if name in db.cur.fetchall():
             break
     elif acc_option=="No".lower():
