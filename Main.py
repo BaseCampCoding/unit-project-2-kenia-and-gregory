@@ -13,8 +13,10 @@ while True:
     -EXIT
     >""")
     if acc_option=="Yes".lower():
-        name=()
-        db.cur.execute("""SELECT )
+        name=input("Enter your First Name: ")
+        db.cur.execute("""SELECT Name FROM Account""")
+        if name in db.cur.fetchall():
+            break
     elif acc_option=="No".lower():
         name=input("Enter your FIRST name: ")
         amount=input("How much do you want to open the account with? ")
@@ -22,7 +24,11 @@ while True:
         db.cur.execute("INSERT INTO Account Values(?, ?, ?)", (name, amount, savings))
         db.con.commit()
         break
+    elif acc_option == "EXIT":
+        "GOODBYE"
+        quit()
 
+print('"""""""""""""""""""""""""""""')
 while True:
     answer = input(
         """What do you want to do ?
