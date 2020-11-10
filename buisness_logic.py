@@ -1,27 +1,33 @@
 class Account:
     def __init__(self): 
         self.savings = 0
-        self.balance = 0
+        self.balance = float(0)
         print('Your Account is Created.')
 
     def deposit(self):
         amount = input('Enter the amount to deposit: ')
         while True:
-            amount = float(amount)
-            if amount.isdigit():
+            try:
                 self.balance += float(amount)
-                print(f"Your New Balance = {self.balance} ")
+                print(f"Your New Balance = {self.balance:.2f} ")
                 break
-            else:
-                print ("please Input a Number")
-                amount=input('Enter the amount to deposit: ')
+            except ValueError:
+                print ("Please input a number")
+                amount = input('Enter the amount to deposit: ')
+
 
     def withdraw(self):
-        amount=int(input('Enter the amount to withdraw: '))
-        if(amount>self.balance):
-            print('Insufficient Balance!')
-        else:
-            self.balance -= amount
+        amount=input('Enter the amount to withdraw: ')
+        while True:
+            try:
+                if(float(amount) > self.balance):
+                    print('Insufficient Balance!')
+                else:
+                    self.balance -= float(amount)
+                    break
+            except ValueError:
+                print ("Please input a number")
+                amount=input('Enter the amount to withdraw: ')
 
     def enquiry(self):
         print(f"Your Balance = {self.balance}")
