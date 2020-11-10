@@ -27,7 +27,7 @@ class Account:
                     break
             except ValueError:
                 print ("Please input a number")
-                amount=input('Enter the amount to withdraw: ')
+                num =input('Enter the amount to withdraw: ')
 
     def enquiry(self):
         print(f"Your Balance = {self.balance}")
