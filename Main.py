@@ -14,9 +14,16 @@ while True:
     >""")
     if acc_option=="Yes".lower():
         name=input("Enter your First Name: ")
-        db.cur.execute("""SELECT name FROM Account""")
-        if name in db.cur.fetchall():
+        db.cur.execute("""SELECT Name FROM Account""")
+        db.con.commit()
+        acc_names= db.cur.fetchall()
+        names=[]
+        for i in acc_names:
+            names.append(name)
+        if name in names:
             break
+        else:
+            continue
     elif acc_option=="No".lower():
         name=input("Enter your FIRST name: ")
         amount=input("How much do you want to open the account with? ")
