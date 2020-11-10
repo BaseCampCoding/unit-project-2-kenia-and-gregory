@@ -4,4 +4,5 @@ cur= con.cursor()
 cur.execute("""CREATE TABLE if not exists Account(
     Name TEXT,
     Checkings REAL,
-    Savings REAL)""")
+    Savings REAL
+    Pin REAL)""")
