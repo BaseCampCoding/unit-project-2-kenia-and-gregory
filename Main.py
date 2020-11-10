@@ -21,6 +21,8 @@ while True:
         for i in acc_names:
             names.append(name)
         if name in names:
+            name_index= names.index(name)
+            print(name_index)
             break
         else:
             continue
@@ -31,7 +33,7 @@ while True:
         db.cur.execute("INSERT INTO Account Values(?, ?, ?)", (name, amount, savings))
         db.con.commit()
         break
-    elif acc_option == "EXIT":
+    elif acc_option == "EXIT".lower():
         "GOODBYE"
         quit()
 

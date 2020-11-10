@@ -1,6 +1,12 @@
+import bank_database as db
+import Main as m 
 class Account:
     def __init__(self): 
         self.savings = 0
+        db.cur.execute("""SELECT Checkings FROM Account""")
+        acc_checkings= db.cur.fetchall()
+        checkings= []
+        for 
         self.balance = float(0)
         print('Your Account is Created.')
 
@@ -30,6 +36,7 @@ class Account:
                 num=input('Enter the amount to withdraw: ')
 
     def enquiry(self):
+
         print(f"Your Balance = {self.balance}")
 
     def Savings_enquiry(self):
