@@ -20,16 +20,31 @@ while True:
             names=[]
             for i in acc_names:
                 names.append(i[0])
+            print(names)
             if name in names:
-                break
+                entered_pin=input("Enter your pin: ")
+                db.cur.execute("""SELECT Pin FROM Account""")
+                db.con.commit()
+                pines= db.cur.fetchall()
+                pins=[]
+                for i in pines: 
+                    pins.append(i[0])
+                print(pins)
+                if entered_pin in pins:
+                    break
+                else:
+                    print("Incorrrect Pin")
+
             else:
                 print("Incorrect Account Name! Please make account")
                 continue
+            
         elif acc_option=="No".lower():
             name=input("Enter your FIRST name: ")
             amount=0 
             savings= 0
-            db.cur.execute("INSERT INTO Account Values(?, ?, ?)", (name, amount, savings))
+            pin=input("Create a 4 digit pin: ")
+            db.cur.execute("INSERT INTO Account Values(?, ?, ?, ? )", (name, amount, savings, pin))
             db.con.commit()
             break
         elif acc_option == "Quit".lower():
