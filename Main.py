@@ -1,18 +1,37 @@
+import bank_database as db
 import buisness_logic as bl
+import sqlite3
 
 print('"""""""""""""""""""""""""""""')
 print("WELCOME TO BANK OF BASE CAMP!")
 print('"""""""""""""""""""""""""""""')
+while True:
+    acc_option=input(
+        """ Do you have an account?
+    -Yes
+    -No
+    -EXIT
+    >""")
+    if acc_option=="Yes".lower():
+        name=()
+        db.cur.execute("""SELECT )
+    elif acc_option=="No".lower():
+        name=input("Enter your FIRST name: ")
+        amount=input("How much do you want to open the account with? ")
+        savings= 0
+        db.cur.execute("INSERT INTO Account Values(?, ?, ?)", (name, amount, savings))
+        db.con.commit()
+        break
 
 while True:
     answer = input(
-        """What do you want to do?
+        """What do you want to do ?
     -View Checkings Account
     -View Savings Account
     -Deposit
     -Withdraw
     -Transfer
-    -QUIT
+    -EXIT
     > """)
     if answer == 'Check Account'.lower():
        bl.account.enquiry()
@@ -32,6 +51,6 @@ while True:
     elif answer == 'Transfer'.lower():
         bl.account.add_to_savings()
 
-    elif answer == "Quit".lower():
+    elif answer == "Exit".lower():
         print("Goodbye")
         break
