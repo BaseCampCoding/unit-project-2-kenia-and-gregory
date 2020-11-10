@@ -17,13 +17,13 @@ class Account:
 
 
     def withdraw(self):
-        amount=input('Enter the amount to withdraw: ')
+        num =input('Enter the amount to withdraw: ')
         while True:
             try:
-                if(float(amount) > self.balance):
+                if(float(num) > self.balance):
                     print('Insufficient Balance!')
                 else:
-                    self.balance -= float(amount)
+                    self.balance -= float(num)
                     break
             except ValueError:
                 print ("Please input a number")
