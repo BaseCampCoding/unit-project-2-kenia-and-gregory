@@ -19,7 +19,7 @@ while True:
             acc_names= db.cur.fetchall()
             names=[]
             for i in acc_names:
-                names.append(db.cur.fetchall()[0:])
+                names.append(db.cur.fetchall()[0])
             if name in names:
                 break
             else:
