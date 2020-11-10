@@ -19,10 +19,11 @@ while True:
             acc_names= db.cur.fetchall()
             names=[]
             for i in acc_names:
-                names.append(db.cur.fetchall()[0])
+                names.append(i[0])
             if name in names:
                 break
             else:
+                print("Incorrect Account Name! Please make account")
                 continue
         elif acc_option=="No".lower():
             name=input("Enter your FIRST name: ")

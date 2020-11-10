@@ -27,6 +27,7 @@ class Account:
                     num=input('Enter the amount to withdraw: ')
                 else:
                     self.balance -= float(num)
+                    print(f"Your Balance = {self.balance:.2f} ")
                     break
             except ValueError:
                 print ("Please input a number")
