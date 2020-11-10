@@ -11,8 +11,8 @@ while True:
             """ Do you have an account?
         -Yes
         -No
-        -EXIT
-        >""")
+        -Quit
+        > """)
         if acc_option=="Yes".lower():
             name=input("Enter your First Name: ")
             db.cur.execute("""SELECT Name FROM Account""")
