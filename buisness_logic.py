@@ -38,9 +38,10 @@ class Account:
                 num=input('Enter the amount to withdraw: ')
 
     def enquiry(self):
-
-        print(f"Your Balance = {self.balance}")
-
+        db.cur.execute("""SELECT Checkings FROM Account""")
+        checking = db.cur.fetchall()
+        print(f"Your Balance = {checking}")
+ 
     def Savings_enquiry(self):
         print(f"Your Balance = {self.savings} ")
 
