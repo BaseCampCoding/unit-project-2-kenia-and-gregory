@@ -10,7 +10,7 @@ while True:
             """ Do you have an account?
         -Yes
         -No
-        -QUIT
+        -Quit
         > """)
         if acc_option=="Yes".lower():
             name=input("Enter your First Name: ")

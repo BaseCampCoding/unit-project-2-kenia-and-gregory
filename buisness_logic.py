@@ -10,13 +10,17 @@ class Account:
         amount = input('Enter the amount to deposit: ')
         while True:
             try:
-                self.balance += float(amount)
+                db.cur.execute("""SELECT Checkings FROM Account""")
+                acc_checking = db.cur.fetchall()
+                checkings = []
+                for i in acc_checking:
+                    self.balance += float(amount)
+                    checkings.append(self.balance)
                 print(f"Your New Balance = {self.balance:.2f} ")
                 break
             except ValueError:
                 print ("Please input a number")
                 amount = input('Enter the amount to deposit: ')
-
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
@@ -47,6 +51,6 @@ class Account:
         else:
             self.balance -= number
             self.savings += number
-            print(f"Your New Savings Balance= {self.savings}")
+            print(f"Your New Savings Balance= {self.savings :.2f}")
 
 account = Account()
