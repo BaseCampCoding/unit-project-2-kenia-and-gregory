@@ -1,12 +1,8 @@
 import bank_database as db
-import Main as m 
 class Account:
     def __init__(self): 
         self.savings = 0
-        db.cur.execute("""SELECT Checkings FROM Account""")
-        acc_checkings= db.cur.fetchall()
-        checkings= []
-        for 
+        # db.cur.execute("""SELECT Checkings FROM Account""")
         self.balance = float(0)
         print('Your Account is Created.')
 
@@ -28,6 +24,8 @@ class Account:
             try:
                 if(float(num) > self.balance):
                     print('Insufficient Balance!')
+                    print(f"Your Balance = {self.balance:.2f} ")
+                    num=input('Enter the amount to withdraw: ')
                 else:
                     self.balance -= float(num)
                     break
