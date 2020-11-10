@@ -5,7 +5,6 @@ class Account:
         self.savings = 0
         # db.cur.execute("""SELECT Checkings FROM Account""")
         self.balance = float(0)
-        print('Your Account is Created.')
 
     def deposit(self):
         deposits = input('Enter the amount to deposit: ')
@@ -13,8 +12,8 @@ class Account:
             try:
                 self.balance += float(deposits)
                 db.cur.execute("""SELECT Checkings FROM Account""")
-                acc_checking= db.cur.fetchall()
-                db.cur.execute('INSERT INTO Account (Checkings) VALUES (?) ', (deposits))
+                db.cur.fetchall()
+                db.cur.execute('UPDATE Checkings = ? WHERE Name =  ', (self.balance))
                 db.con.commit()
                 print(f"Your New Balance = {self.balance:.2f} ")
                 break
