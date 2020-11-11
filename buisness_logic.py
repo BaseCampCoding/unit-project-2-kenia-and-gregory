@@ -120,9 +120,7 @@ class Account:
                         
 
     def enquiry(self):
-        db.cur.execute("""SELECT * FROM Account""")
-        for row in db.cur.fetchall():
-            print(f"Your Balance = {row}")
+        print(f"Your Balance = {self.balance}")
  
     def Savings_enquiry(self):
         print(f"Your Balance = {self.savings} ")
@@ -134,6 +132,10 @@ class Account:
         else:
             self.balance -= number
             self.savings += number
+            db.cur.execute("SELECT * FROM Account")
+            db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+            db.con.commit()
+            db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             print(f"Your New Savings Balance= {self.savings :.2f}")
 
 account = Account()
