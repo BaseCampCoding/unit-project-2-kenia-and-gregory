@@ -121,7 +121,7 @@ class Account:
                 print(f"Your Balance = {self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
-            elif self.budget > self.balance:
+            if self.budget > self.balance:
                 answer_budget=input(
                     """You are going over your budget!
                     Do you still want to make the transaction?""")
