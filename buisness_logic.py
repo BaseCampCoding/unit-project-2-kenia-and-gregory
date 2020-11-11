@@ -60,9 +60,8 @@ class Account:
         while True:
             try:
                 self.balance += float(deposits)
-                db.cur.execute("""SELECT Checkings FROM Account""")
-                db.cur.execute('SELECT Name FROM Account')
-                db.cur.execute("UPDATE Account set Checkings = ? WHERE Name = ? ", (self.balance, name))
+                db.cur.execute("SELECT Checkings FROM Account WHERE Name = ?", (self.name))
+                db.cur.execute("INSERT INTO Checkings FROM Account", (self.balance))
                 db.con.commit()
                 print(f"Your New Balance = {self.balance:.2f} ")
                 break
