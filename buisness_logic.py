@@ -63,16 +63,16 @@ class Account:
     def deposit(self):
         deposits = input('Enter the amount to deposit: ')
         while True:
-            # try:
-            self.balance += float(deposits)
-            db.cur.execute("SELECT * FROM Account")
-            db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-            db.con.commit()
-            print(f"Your New Balance = {self.balance:.2f} ")
-            break
-            # except ValueError:
-            #     print ("Please input a number")
-            #     deposits = input('Enter the amount to deposit: ')
+            try:
+                self.balance += float(deposits)
+                db.cur.execute("SELECT * FROM Account")
+                db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+                db.con.commit()
+                print(f"Your New Balance = {self.balance:.2f} ")
+                break
+            except ValueError:
+                print ("Please input a number")
+                deposits = input('Enter the amount to deposit: ')
 
     def budgets(self):
         if_budget= input("Do you want to set up a budget for your Checkings account? ")
