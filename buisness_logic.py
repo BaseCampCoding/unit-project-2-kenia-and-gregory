@@ -1,9 +1,7 @@
 import bank_database as db
-import Main
 class Account:
     def __init__(self): 
         self.savings = 0
-        # db.cur.execute("""SELECT Checkings FROM Account""")
         self.balance = float(0)
 
     def deposit(self):
@@ -12,8 +10,8 @@ class Account:
             try:
                 self.balance += float(deposits)
                 db.cur.execute("""SELECT Checkings FROM Account""")
-                db.cur.fetchall()
-                db.cur.execute("UPDATE Account set Checkings = ? WHERE Name = ? ", (self.balance, Main.name))
+                db.cur.execute('SELECT Name FROM Account')
+                db.cur.execute("UPDATE Account set Checkings = ? WHERE Name = ? ", (self.balance, name))
                 db.con.commit()
                 print(f"Your New Balance = {self.balance:.2f} ")
                 break
