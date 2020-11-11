@@ -86,9 +86,10 @@ class Account:
 
     def view_budget(self):
         db.cur.execute("SELECT * FROM Account")
-        db.cur.execute("""SELECT Budget FROM Account WHERE Name = ?""", (self.name))
+        db.cur.execute("""SELECT Budget FROM Account WHERE Name = ?""", (self.name,))
         db.con.commit()
-        print(f"The limit on your account is {db.cur.fetchall:.2f} ")
+        print(db.cur.fetchone())
+        # print(f"The limit on your account is {things :.2f} ")
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
