@@ -26,7 +26,7 @@ class Account:
                 names=[]
                 for i in acc_names:
                     names.append(i[0])
-                print(names)
+                # print(names)
                 if name in names:
                     entered_pin=input("Enter your pin: ")
                     db.cur.execute("""SELECT Pin FROM Account""")
@@ -35,7 +35,7 @@ class Account:
                     pins=[]
                     for i in pines: 
                         pins.append(i[0])
-                    print(pins)
+                    # print(pins)
                     if entered_pin in pins:
                         break
                     else:
@@ -95,6 +95,13 @@ class Account:
                 print(f"Your Balance = {self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
+            elif self.budget > self.balance:
+                answer_budget=input(
+                    """You are going over your budget!
+                    Do you still want to make the transaction?""")
+                if answer_budget == "No".lower():
+                    break
+                        
             else:
                 self.balance -= float(num)
                 db.cur.execute("SELECT * FROM Account")
@@ -104,6 +111,7 @@ class Account:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = {self.balance:.2f} ")
                 break
+                        
 
     def enquiry(self):
         db.cur.execute("""SELECT * FROM Account""")
@@ -122,5 +130,4 @@ class Account:
             self.savings += number
             print(f"Your New Savings Balance= {self.savings :.2f}")
 
-print(withdraws_j)
 account = Account()
