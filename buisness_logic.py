@@ -25,12 +25,12 @@ class Account:
             Savings.append(i[0])
         self.savings += float(Savings[0])
 
-        db.cur.execute("SELECT Checkings FROM Account")
-        Budget1 = db.cur.fetchall()
-        Budget = []
-        for i in Budget1:
-            Budget.append(i[0])
-        self.budget += float(Budget[0])
+        # db.cur.execute("SELECT Checkings FROM Account")
+        # Budget1 = db.cur.fetchall()
+        # Budget = []
+        # for i in Budget1:
+        #     Budget.append(i[0])
+        # self.budget += float(Budget[0])
 
         while True:
             acc_option=input(
@@ -158,5 +158,8 @@ class Account:
             db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             db.con.commit()
             print(f"Your New Savings Balance= {self.savings :.2f}")
+    def view_all(self):
+        ALL_Data = [self.name, self.balance, self.savings, self.budget]
+        print(ALL_Data)
 
 account = Account()

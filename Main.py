@@ -15,7 +15,8 @@ while True:
         -[5] Transfer
         -[6] Set up a Budget
         -[7] View Budget 
-        -[8] EXIT
+        -[8] View All
+        -[9] EXIT
         > """)
         if answer == '1':
             bl.account.enquiry()
@@ -39,5 +40,9 @@ while True:
             bl.account.view_budget()
 
         elif answer == "8":
+            bl.account.view_all()
+
+
+        elif answer == "9":
             print("Goodbye")
             break
