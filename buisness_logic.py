@@ -9,8 +9,30 @@ class Account:
         self.savings = 0
         self.balance = float(0)
         self.budget= 0
+        
     def if_acc(self):
         while True:
+            db.cur.execute("SELECT Checkings FROM Account")
+            Money1 = db.cur.fetchall()
+            Money= []
+            for i in Money1:
+                Money.append(i[0])
+            self.balance += float(Money[0])
+
+            # db.cur.execute("SELECT Savings FROM Account")
+            # Savings1 = db.cur.fetchall()
+            # Savings = []
+            # for i in Savings1:
+            #     Savings.append(i[0])
+            # self.savings += float(Savings[0])
+
+            # db.cur.execute("SELECT Checkings FROM Account")
+            # Budget1 = db.cur.fetchall()
+            # Budget = []
+            # for i in Budget1:
+            #     Budget.append(i[0])
+            # self.budget += float(Budget[0])
+
             acc_option=input(
             """ Do you have an account?
         -Yes
@@ -85,10 +107,7 @@ class Account:
             db.con.commit()
 
     def view_budget(self):
-        db.cur.execute("SELECT * FROM Account")
-        db.cur.execute("""SELECT Budget FROM Account WHERE Name = ?""", (self.name,))
-        db.con.commit()
-        print(db.cur.fetchone())
+        print(f"Your Budget is {self.budget}")
         # print(f"The limit on your account is {things :.2f} ")
 
     def withdraw(self):
@@ -114,7 +133,7 @@ class Account:
                 db.cur.execute("SELECT * FROM Account")
                 db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                 db.con.commit()
-                with open("withdraw_activity.json", "w") as file:
+                with open("withdraw_activity.json", "w", newline='') as file:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = {self.balance:.2f} ")
                 break
@@ -137,6 +156,7 @@ class Account:
             db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
             db.con.commit()
             db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
+            db.con.commit()
             print(f"Your New Savings Balance= {self.savings :.2f}")
 
 account = Account()
