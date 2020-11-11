@@ -1,5 +1,5 @@
 import bank_database as db
-
+import Main
 class Account:
     def __init__(self): 
         self.savings = 0
@@ -13,7 +13,7 @@ class Account:
                 self.balance += float(deposits)
                 db.cur.execute("""SELECT Checkings FROM Account""")
                 db.cur.fetchall()
-                db.cur.execute('UPDATE Checkings = ? WHERE Name =  ', (self.balance))
+                db.cur.execute("UPDATE Account set Checkings = ? WHERE Name = ? ", (self.balance, Main.name))
                 db.con.commit()
                 print(f"Your New Balance = {self.balance:.2f} ")
                 break
@@ -23,6 +23,7 @@ class Account:
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
+        # reason=input("Reason for withdraw: ")
         while True:
             try:
                 if(float(num) > self.balance):

@@ -43,7 +43,7 @@ while True:
             name=input("Enter your FIRST name: ")
             amount=0 
             savings= 0
-            pin=int(input("Create a 4 digit pin: "))
+            pin=str(input("Create a 4 digit pin: "))
             db.cur.execute("INSERT INTO Account Values(?, ?, ?, ? )", (name, amount, savings, pin))
             db.con.commit()
             print('Your Account is Created.')
