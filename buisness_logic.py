@@ -80,9 +80,15 @@ class Account:
             budget_amount=input("What is your limit? ")   
             self.budget += float(budget_amount)
             print("Budget successfully set!")
+            db.cur.execute("SELECT * FROM Account")
+            db.cur.execute("UPDATE Account SET Budget = ? WHERE Name = ?", (self.budget, self.name))
+            db.con.commit()
 
     def view_budget(self):
-        print(f"The limit on your account is {self.budget :.2f} ")
+        db.cur.execute("SELECT * FROM Account")
+        db.cur.execute("""SELECT Budget FROM Account WHERE Name = ?""", (self.name))
+        db.con.commit()
+        print(f"The limit on your account is {db.cur.fetchall:.2f} ")
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
