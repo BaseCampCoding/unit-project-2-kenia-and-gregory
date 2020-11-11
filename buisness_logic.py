@@ -86,7 +86,8 @@ class Account:
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
         reason=input("Reason for withdraw: ")
-        withdraws_j.append({"Name": self.name, "Amount": num, "Reason": reason})
+        entry={"Name": self.name, "Amount": num, "Reason": reason}
+        withdraws_j.append(entry)
         while True:
             try:
                 if(float(num) > self.balance):
