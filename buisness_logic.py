@@ -67,8 +67,8 @@ class Account:
                 self.balance += float(deposits)
                 db.cur.execute("SELECT * FROM Account")
                 db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-                db.con.commit()
                 print(f"Your New Balance = {self.balance :.2f} ")
+                db.con.commit()
                 break
             except ValueError:
                 print ("Please input a number")
@@ -89,21 +89,22 @@ class Account:
         entry={"Name": self.name, "Amount": num, "Reason": reason}
         withdraws_j.append(entry)
         while True:
-            try:
+            # try:
                 if(float(num) > self.balance):
                     print('Insufficient Balance!')
                     print(f"Your Balance = {self.balance :.2f} ")
-                    num=input('Enter the amount to withdraw: ')
+                    num = input('Enter the amount to withdraw: ')
+                    break
                 else:
                     self.balance -= float(num)
                     db.cur.execute("SELECT * FROM Account")
                     db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                     db.con.commit()
-                    print(f"Your Balance = {self.balance :.2f} ")
+                    print(f"Your Balance = {self.balance:.2f} ")
                     break
-            except ValueError:
-                print ("Please input a number")
-                num=input('Enter the amount to withdraw: ')
+            # except ValueError:
+            #     print ("Please input a number")
+            #     num=input('Enter the amount to withdraw: ')
 
     def enquiry(self):
         db.cur.execute("""SELECT * FROM Account""")
