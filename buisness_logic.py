@@ -78,7 +78,7 @@ class Account:
         if_budget= input("Do you want to set up a budget for your Checkings account? ")
         if if_budget == "Yes".lower():
             budget_amount=input("What is your limit? ")   
-            self.budget += budget_amount
+            self.budget += float(budget_amount)
             print("Budget successfully set!")
 
     def view_budget(self):
