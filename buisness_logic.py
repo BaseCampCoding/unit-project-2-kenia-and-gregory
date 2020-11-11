@@ -79,6 +79,7 @@ class Account:
         if if_budget == "Yes".lower():
             budget_amount=input("What is your limit? ")   
             self.budget += budget_amount
+            print("Budget successfully set!")
 
     def view_budget(self):
         print(f"The limit on your account is {self.budget :.2f} ")
