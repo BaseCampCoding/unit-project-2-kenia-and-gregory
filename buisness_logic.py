@@ -125,5 +125,3 @@ class Account:
 
 print(withdraws_j)
 account = Account()
-with open("withdraw_activity.json", "w") as file:
-    json.dump(withdraws_j, file)
