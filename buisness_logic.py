@@ -11,28 +11,28 @@ class Account:
         self.budget= 0
         
     def if_acc(self):
+        db.cur.execute("SELECT Checkings FROM Account")
+        Money1 = db.cur.fetchall()
+        Money= []
+        for i in Money1:
+            Money.append(i[0])
+        self.balance += float(Money[0])
+
+        db.cur.execute("SELECT Savings FROM Account")
+        Savings1 = db.cur.fetchall()
+        Savings = []
+        for i in Savings1:
+            Savings.append(i[0])
+        self.savings += float(Savings[0])
+
+        db.cur.execute("SELECT Checkings FROM Account")
+        Budget1 = db.cur.fetchall()
+        Budget = []
+        for i in Budget1:
+            Budget.append(i[0])
+        self.budget += float(Budget[0])
+
         while True:
-            db.cur.execute("SELECT Checkings FROM Account")
-            Money1 = db.cur.fetchall()
-            Money= []
-            for i in Money1:
-                Money.append(i[0])
-            self.balance += float(Money[0])
-
-            # db.cur.execute("SELECT Savings FROM Account")
-            # Savings1 = db.cur.fetchall()
-            # Savings = []
-            # for i in Savings1:
-            #     Savings.append(i[0])
-            # self.savings += float(Savings[0])
-
-            # db.cur.execute("SELECT Checkings FROM Account")
-            # Budget1 = db.cur.fetchall()
-            # Budget = []
-            # for i in Budget1:
-            #     Budget.append(i[0])
-            # self.budget += float(Budget[0])
-
             acc_option=input(
             """ Do you have an account?
         -Yes
