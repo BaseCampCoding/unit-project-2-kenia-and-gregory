@@ -85,10 +85,7 @@ class Account:
             db.con.commit()
 
     def view_budget(self):
-        db.cur.execute("SELECT * FROM Account")
-        db.cur.execute("""SELECT Budget FROM Account WHERE Name = ?""", (self.name,))
-        db.con.commit()
-        print(db.cur.fetchone())
+        print(f"Your Budget is {self.budget}")
         # print(f"The limit on your account is {things :.2f} ")
 
     def withdraw(self):
@@ -114,7 +111,7 @@ class Account:
                 db.cur.execute("SELECT * FROM Account")
                 db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                 db.con.commit()
-                with open("withdraw_activity.json", "w") as file:
+                with open("withdraw_activity.json", "w", newline='') as file:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = {self.balance:.2f} ")
                 break
@@ -137,6 +134,7 @@ class Account:
             db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
             db.con.commit()
             db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
+            db.con.commit()
             print(f"Your New Savings Balance= {self.savings :.2f}")
 
 account = Account()
