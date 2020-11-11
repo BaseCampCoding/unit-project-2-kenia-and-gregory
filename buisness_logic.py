@@ -1,4 +1,8 @@
 import bank_database as db
+import json 
+with open("withdraw_activity.json") as file:
+    reader = json.load(file)
+    withdraws_j = list(reader)
 class Account:
     def __init__(self): 
         self.name= None
@@ -73,14 +77,15 @@ class Account:
         if_budget= input("Do you want to set up a budget for your Checkings account? ")
         if if_budget == "Yes".lower():
             budget_amount=input("What is your limit? ")   
-            self.budget= budget_amount
+            self.budget += budget_amount
 
     def view_budget(self):
         print(f"The limit on your account is {self.budget:.2f} ")
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: ')
-        # reason=input("Reason for withdraw: ")
+        reason=input("Reason for withdraw: ")
+        withdraws_j.append({"Name": self.name, "Amount": num, "Reason": reason})
         while True:
             try:
                 if(float(num) > self.balance):
@@ -112,5 +117,8 @@ class Account:
             self.balance -= number
             self.savings += number
             print(f"Your New Savings Balance= {self.savings :.2f}")
+
     
 account = Account()
+with open("withdraw_activity.json", "w") as file:
+    json.dump(withdraws_j, file)
