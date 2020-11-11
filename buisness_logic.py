@@ -89,22 +89,20 @@ class Account:
         entry={"Name": self.name, "Amount": num, "Reason": reason}
         withdraws_j.append(entry)
         while True:
-            # try:
-                if(float(num) > self.balance):
-                    print('Insufficient Balance!')
-                    print(f"Your Balance = {self.balance :.2f} ")
-                    num = input('Enter the amount to withdraw: ')
-                    break
-                else:
-                    self.balance -= float(num)
-                    db.cur.execute("SELECT * FROM Account")
-                    db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-                    db.con.commit()
-                    print(f"Your Balance = {self.balance:.2f} ")
-                    break
-            # except ValueError:
-            #     print ("Please input a number")
-            #     num=input('Enter the amount to withdraw: ')
+            if(float(num) > self.balance):
+                print('Insufficient Balance!')
+                print(f"Your Balance = {self.balance :.2f} ")
+                num = input('Enter the amount to withdraw: ')
+                break
+            else:
+                self.balance -= float(num)
+                db.cur.execute("SELECT * FROM Account")
+                db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+                db.con.commit()
+                with open("withdraw_activity.json", "w") as file:
+                    json.dump(withdraws_j, file)
+                print(f"Your Balance = {self.balance:.2f} ")
+                break
 
     def enquiry(self):
         db.cur.execute("""SELECT * FROM Account""")
