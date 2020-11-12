@@ -22,7 +22,7 @@ while True:
         -[8] View Budget 
         -[9] View All
         -[10] EXIT
-        > """+ Style.RESET_ALL)
+        >"""+ Style.RESET_ALL)
 
         if answer == '1':
             bl.account.enquiry()
