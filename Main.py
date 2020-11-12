@@ -10,7 +10,7 @@ while True:
     bl.account.if_acc()
 
     while True:
-        answer = input(Fore.MAGENTA+
+        answer = input(Fore.CYAN+
             """What do you want to do ?
         -[1] Checkings Account
         -[2] Savings Account

@@ -94,10 +94,7 @@ class Account:
         deposits = input('Enter the amount to deposit: $')
         while True:
             try:
-                print("Inside Deposit")
-                print(self.balance)
                 self.balance += float(deposits)
-                print(self.balance)
                 cur.execute("SELECT * FROM Account")
                 cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                 print(f"Your New Balance = ${self.balance :.2f} ")
@@ -135,8 +132,6 @@ class Account:
         entry={"Name": self.name, "Amount": num, "Reason": reason}
         withdraws_j.append(entry)
         while True:
-            print("!!!!!!!")
-            print(self.balance)
             if(float(num) > self.balance):
                 print(Fore.RED +'Insufficient Balance!'+ Style.RESET_ALL)
                 print(f"Your Balance = ${self.balance :.2f} ")
@@ -178,7 +173,8 @@ class Account:
         print(f"Your Balance = ${cur.fetchall()}")
  
     def Savings_enquiry(self):
-        print(f"Your Balance = ${self.savings} ")
+        cur.execute('SELECT Savings FROM Account WHERE Name = ?', (self.name,))
+        print(f"Your Balance = ${cur.fetchall()} ")
 
     def add_to_savings(self):
         number=(input("How much do you want to transfer to Savings Account? "))
@@ -198,5 +194,4 @@ class Account:
         ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
         print(ALL_Data)
 
-# print(cur.fetchall())
 account = Account()
