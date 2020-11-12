@@ -10,7 +10,7 @@ with open("withdraw_activity.json") as file:
     reader = json.load(file)
     withdraws_j = list(reader)
 
-with open("transactions_to_savings.json") as file:
+with open("savings.json") as file:
     reader = json.load(file)
     savings_j = list(reader)
 
@@ -86,13 +86,13 @@ class Account:
                 break
             except ValueError:
                 print ("Please input a number")
-                deposits = input('Enter the amount to deposit: ')
+                deposits = input('Enter the amount to deposit: $')
 
     def budgets(self):
         if_budget= input("Do you want to set up a budget for your Checkings account? ")
         while True:
             if if_budget == "Yes".lower():
-                budget_amount=input("What is your limit? ")   
+                budget_amount=input("What is your limit? $")   
                 self.budget += float(budget_amount)
                 print("Budget successfully set!")
                 cur.execute("SELECT * FROM Account")
@@ -119,7 +119,7 @@ class Account:
             if(float(num) > self.balance):
                 print(Fore.RED +'Insufficient Balance!'+ Style.RESET_ALL)
                 print(f"Your Balance = ${self.balance :.2f} ")
-                num = input('Enter the amount to withdraw: ')
+                num = input('Enter the amount to withdraw: $')
                 self.balance -= float(num)
                 break
             elif self.budget <= self.balance:
@@ -162,7 +162,7 @@ class Account:
         print(f"Your Balance = ${cur.fetchall()} ")
 
     def add_to_savings(self):
-        number=(input("How much do you want to transfer to Savings Account? "))
+        number=(input("How much do you want to transfer to Savings Account? $"))
         if(float(number)>self.balance):
             print('Insufficient Balance!')
         else:
@@ -173,7 +173,7 @@ class Account:
             con.commit()
             cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             con.commit()
-            savings=(f"Name:{ self.name}, Amount: {float(number)}")
+            savings=(f"Name:{ self.name}, Amount: ${float(number)}")
             savings_j = []
             savings_j.append(savings)
             print(f"Your New Savings Balance= ${self.savings :.2f}")
@@ -183,5 +183,7 @@ class Account:
     def view_all(self):
         ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
         print(ALL_Data)
-
+    
+    def view_transfers(self):
+        print(savings_j)
 account = Account()
