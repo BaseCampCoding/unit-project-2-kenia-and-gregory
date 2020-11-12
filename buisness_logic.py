@@ -1,3 +1,6 @@
+import colorama
+from colorama import Fore, Style, Back 
+colorama.init()
 import bank_database as db
 import json 
 import sqlite3 
@@ -45,7 +48,7 @@ class Account:
         -Quit
         > """)
             if acc_option=="Yes".lower():
-                name= input("Enter your USERNAME Name: ")
+                name= input("Enter your USERNAME: ")
                 cur.execute("""SELECT Name FROM Account""")
                 con.commit()
                 self.name = name
@@ -53,7 +56,7 @@ class Account:
                 names=[]
                 for i in acc_names:
                     names.append(i[0])
-                print(names)
+                # print(names)
                 if name in names:
                     entered_pin=input("Enter your pin: ")
                     cur.execute("""SELECT Pin FROM Account""")
@@ -62,7 +65,7 @@ class Account:
                     pins=[]
                     for i in pines: 
                         pins.append(i[0])
-                    print(pins)
+                    # print(pins)
                     if entered_pin in pins:
                         break
                     else:
@@ -73,7 +76,7 @@ class Account:
                     continue
                 
             elif acc_option=="No".lower():
-                name=input("Enter a USERNAME name: ")
+                name=input("Enter a USERNAME: ")
                 self.name = name
                 amount=0 
                 savings= 0
@@ -135,7 +138,7 @@ class Account:
             print("!!!!!!!")
             print(self.balance)
             if(float(num) > self.balance):
-                print('Insufficient Balance!')
+                print(Fore.RED +'Insufficient Balance!'+ Style.RESET_ALL)
                 print(f"Your Balance = ${self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
@@ -143,7 +146,16 @@ class Account:
                 answer_budget=input(
                     """You are going over your budget!
                     Do you still want to make the transaction?""")
-                if answer_budget == "No".lower():
+                if answer_budget == "Yes".lower():
+                    self.balance -= float(num)
+                    cur.execute("SELECT * FROM Account")
+                    cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+                    con.commit()
+                    with open("withdraw_activity.json", "w", newline='') as file:
+                        json.dump(withdraws_j, file)
+                    print(f"Your Balance = ${self.balance:.2f} ")
+                    break
+                elif answer_budget == "No".lower():
                     break
 
             else:
@@ -186,5 +198,5 @@ class Account:
         ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
         print(ALL_Data)
 
-print(cur.fetchall())
+# print(cur.fetchall())
 account = Account()

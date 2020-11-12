@@ -1,13 +1,16 @@
+import colorama
+from colorama import Fore, Style, Back 
+colorama.init()
 import bank_database as db
 import buisness_logic as bl
 while True:
     print('"""""""""""""""""""""""""""""')
-    print("WELCOME TO BANK OF BASE CAMP!")
+    print(Fore.BLUE +"WELCOME TO BANK OF BASE CAMP!"+ Style.RESET_ALL)
     print('"""""""""""""""""""""""""""""')
     bl.account.if_acc()
 
     while True:
-        answer = input(
+        answer = input(Fore.MAGENTA+
             """What do you want to do ?
         -[1] Checkings Account
         -[2] Savings Account
@@ -19,7 +22,7 @@ while True:
         -[8] View Budget 
         -[9] View All
         -[10] EXIT
-        > """)
+        > """+ Style.RESET_ALL)
 
         if answer == '1':
             bl.account.enquiry()
