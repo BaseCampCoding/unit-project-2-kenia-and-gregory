@@ -5,6 +5,7 @@ while True:
     print("WELCOME TO BANK OF BASE CAMP!")
     print('"""""""""""""""""""""""""""""')
     bl.account.if_acc()
+
     while True:
         answer = input(
             """What do you want to do ?
@@ -18,6 +19,7 @@ while True:
         -[8] View All
         -[9] EXIT
         > """)
+
         if answer == '1':
             bl.account.enquiry()
         
@@ -41,7 +43,6 @@ while True:
 
         elif answer == "8":
             bl.account.view_all()
-
 
         elif answer == "9":
             print("Goodbye")

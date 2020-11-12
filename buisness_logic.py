@@ -81,7 +81,7 @@ class Account:
             elif acc_option == "Quit".lower():
                 "GOODBYE"
                 quit()
-        # print('"""""""""""""""""""""""""""""')
+                
     def deposit(self):
         deposits = input('Enter the amount to deposit: ')
         while True:
@@ -137,7 +137,6 @@ class Account:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = {self.balance:.2f} ")
                 break
-                        
 
     def enquiry(self):
         print(f"Your Balance = {self.balance}")
@@ -158,6 +157,7 @@ class Account:
             db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             db.con.commit()
             print(f"Your New Savings Balance= {self.savings :.2f}")
+
     def view_all(self):
         ALL_Data = [self.name, self.balance, self.savings, self.budget]
         print(ALL_Data)
