@@ -98,13 +98,21 @@ class Account:
 
     def budgets(self):
         if_budget= input("Do you want to set up a budget for your Checkings account? ")
-        if if_budget == "Yes".lower():
-            budget_amount=input("What is your limit? ")   
-            self.budget += float(budget_amount)
-            print("Budget successfully set!")
-            db.cur.execute("SELECT * FROM Account")
-            db.cur.execute("UPDATE Account SET Budget = ? WHERE Name = ?", (self.budget, self.name))
-            db.con.commit()
+        while True:
+            if if_budget == "Yes".lower():
+                budget_amount=input("What is your limit? ")   
+                self.budget += float(budget_amount)
+                print("Budget successfully set!")
+                db.cur.execute("SELECT * FROM Account")
+                db.cur.execute("UPDATE Account SET Budget = ? WHERE Name = ?", (self.budget, self.name))
+                db.con.commit()
+                break
+            elif if_budget == "No".lower():
+                break
+            else: 
+                print("Please insert a valid answer!")
+                if_budget= input("Do you want to set up a budget for your Checkings account? ")
+
 
     def view_budget(self):
         print(f"Your Budget is {self.budget}")
@@ -127,7 +135,7 @@ class Account:
                     Do you still want to make the transaction?""")
                 if answer_budget == "No".lower():
                     break
-                        
+
             else:
                 self.balance -= float(num)
                 db.cur.execute("SELECT * FROM Account")
@@ -137,6 +145,10 @@ class Account:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = {self.balance:.2f} ")
                 break
+    def view_withdraws(self):
+        for key in withdraws_j:
+            if key["Name"] == self.name:
+                print(key["Amount"], key["Reason"])
 
     def enquiry(self):
         print(f"Your Balance = {self.balance}")
