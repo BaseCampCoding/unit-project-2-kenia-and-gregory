@@ -1,8 +1,13 @@
 import bank_database as db
 import json 
+import sqlite3 
+con= sqlite3.connect("bank.db")
+cur= con.cursor()
 with open("withdraw_activity.json") as file:
     reader = json.load(file)
     withdraws_j = list(reader)
+
+
 class Account:
     def __init__(self): 
         self.name= str(None)
@@ -41,19 +46,19 @@ class Account:
         > """)
             if acc_option=="Yes".lower():
                 name= input("Enter your USERNAME Name: ")
-                db.cur.execute("""SELECT Name FROM Account""")
-                db.con.commit()
+                cur.execute("""SELECT Name FROM Account""")
+                con.commit()
                 self.name = name
-                acc_names= db.cur.fetchall()
+                acc_names= cur.fetchall()
                 names=[]
                 for i in acc_names:
                     names.append(i[0])
                 # print(names)
                 if name in names:
                     entered_pin=input("Enter your pin: ")
-                    db.cur.execute("""SELECT Pin FROM Account""")
-                    db.con.commit()
-                    pines= db.cur.fetchall()
+                    cur.execute("""SELECT Pin FROM Account""")
+                    con.commit()
+                    pines= cur.fetchall()
                     pins=[]
                     for i in pines: 
                         pins.append(i[0])
@@ -74,8 +79,8 @@ class Account:
                 savings= 0
                 budget=0 
                 pin=str(input("Create a 4 digit pin: "))
-                db.cur.execute("INSERT INTO Account Values(?, ?, ?, ?, ? )", (name, amount, savings, pin, budget))
-                db.con.commit()
+                cur.execute("INSERT INTO Account Values(?, ?, ?, ?, ? )", (name, amount, savings, pin, budget))
+                con.commit()
                 print('Your Account is Created.')
                 break
             elif acc_option == "Quit".lower():
@@ -83,14 +88,14 @@ class Account:
                 quit()
 
     def deposit(self):
-        deposits = input('Enter the amount to deposit: ')
+        deposits = input('Enter the amount to deposit: $')
         while True:
             try:
                 self.balance += float(deposits)
-                db.cur.execute("SELECT * FROM Account")
-                db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-                print(f"Your New Balance = {self.balance :.2f} ")
-                db.con.commit()
+                cur.execute("SELECT * FROM Account")
+                cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+                print(f"Your New Balance = ${self.balance :.2f} ")
+                con.commit()
                 break
             except ValueError:
                 print ("Please input a number")
@@ -102,23 +107,23 @@ class Account:
             budget_amount=input("What is your limit? ")   
             self.budget += float(budget_amount)
             print("Budget successfully set!")
-            db.cur.execute("SELECT * FROM Account")
-            db.cur.execute("UPDATE Account SET Budget = ? WHERE Name = ?", (self.budget, self.name))
-            db.con.commit()
+            cur.execute("SELECT * FROM Account")
+            cur.execute("UPDATE Account SET Budget = ? WHERE Name = ?", (self.budget, self.name))
+            con.commit()
 
     def view_budget(self):
-        print(f"Your Budget is {self.budget}")
+        print(f"Your Budget is $ {self.budget}")
         # print(f"The limit on your account is {things :.2f} ")
 
     def withdraw(self):
-        num =input('Enter the amount to withdraw: ')
+        num =input('Enter the amount to withdraw: $')
         reason=input("Reason for withdraw: ")
         entry={"Name": self.name, "Amount": num, "Reason": reason}
         withdraws_j.append(entry)
         while True:
             if(float(num) > self.balance):
                 print('Insufficient Balance!')
-                print(f"Your Balance = {self.balance :.2f} ")
+                print(f"Your Balance = ${self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
             if self.budget > self.balance:
@@ -130,36 +135,39 @@ class Account:
                         
             else:
                 self.balance -= float(num)
-                db.cur.execute("SELECT * FROM Account")
-                db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-                db.con.commit()
+                cur.execute("SELECT * FROM Account")
+                cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+                con.commit()
                 with open("withdraw_activity.json", "w", newline='') as file:
                     json.dump(withdraws_j, file)
-                print(f"Your Balance = {self.balance:.2f} ")
+                print(f"Your Balance = ${self.balance:.2f} ")
                 break
 
     def enquiry(self):
-        print(f"Your Balance = {self.balance}")
+        cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name))
+        self.balance = cur.fetchall()
+        print(f"Your Balance = ${self.balance}")
  
     def Savings_enquiry(self):
-        print(f"Your Balance = {self.savings} ")
+        print(f"Your Balance = ${self.savings} ")
 
     def add_to_savings(self):
-        number=int(input("How much do you want to transfer to Savings Account? "))
-        if(number>self.balance):
+        number=(input("How much do you want to transfer to Savings Account? "))
+        if(float(number)>self.balance):
             print('Insufficient Balance!')
         else:
-            self.balance -= number
-            self.savings += number
-            db.cur.execute("SELECT * FROM Account")
-            db.cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
-            db.con.commit()
-            db.cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
-            db.con.commit()
-            print(f"Your New Savings Balance= {self.savings :.2f}")
+            self.balance -= float(number)
+            self.savings += float(number)
+            cur.execute("SELECT * FROM Account")
+            cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
+            con.commit()
+            cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
+            con.commit()
+            print(f"Your New Savings Balance= ${self.savings :.2f}")
 
     def view_all(self):
-        ALL_Data = [self.name, self.balance, self.savings, self.budget]
+        ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
         print(ALL_Data)
 
+print(cur.fetchall())
 account = Account()
