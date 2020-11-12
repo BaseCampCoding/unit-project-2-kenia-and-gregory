@@ -122,9 +122,11 @@ class Account:
                 num = input('Enter the amount to withdraw: ')
                 self.balance -= float(num)
                 break
-            if self.budget > self.balance:
-                answer_budget=input("You are going over your budget! \n Do you still want to make the transaction?")
+            elif self.budget <= self.balance:
+                print("You are going over your budget!")
+                answer_budget=input("Do you still want to make the transaction? ")
                 if answer_budget == "Yes".lower():
+                    self.balance -= float(num)
                     cur.execute("SELECT * FROM Account")
                     cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                     con.commit()
