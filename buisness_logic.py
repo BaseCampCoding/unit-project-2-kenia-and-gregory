@@ -173,11 +173,12 @@ class Account:
             con.commit()
             cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             con.commit()
-            savings={"Name": self.name, "Amount": number}
+            savings=(f"Name:{ self.name}, Amount: {float(number)}")
+            savings_j = []
             savings_j.append(savings)
             print(f"Your New Savings Balance= ${self.savings :.2f}")
             with open("savings.json", "w", newline='') as file:
-                    json.dump(savings_j, file)
+                json.dump(savings_j, file)
 
     def view_all(self):
         ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
