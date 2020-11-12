@@ -142,7 +142,7 @@ class Account:
                 print(f"Your Balance = ${self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
-            if self.budget > self.balance[0]:
+            if self.budget > self.balance:
                 answer_budget=input(
                     """You are going over your budget!
                     Do you still want to make the transaction?""")
@@ -167,6 +167,7 @@ class Account:
                     json.dump(withdraws_j, file)
                 print(f"Your Balance = ${self.balance:.2f} ")
                 break
+
     def view_withdraws(self):
         for key in withdraws_j:
             if key["Name"] == self.name:
@@ -174,8 +175,7 @@ class Account:
 
     def enquiry(self):
         cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name,))
-        self.balance = cur.fetchall()
-        print(f"Your Balance = ${self.balance}")
+        print(f"Your Balance = ${cur.fetchall()}")
  
     def Savings_enquiry(self):
         print(f"Your Balance = ${self.savings} ")
