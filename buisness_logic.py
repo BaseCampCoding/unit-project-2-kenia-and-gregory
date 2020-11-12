@@ -50,20 +50,14 @@ class Account:
                 con.commit()
                 self.name = name
                 acc_names= cur.fetchall()
-                names=[]
-                for i in acc_names:
-                    names.append(i[0])
                 # print(names)
-                if name in names:
+                if name == self.name:
                     entered_pin=input("Enter your pin: ")
                     cur.execute("""SELECT Pin FROM Account""")
                     con.commit()
-                    pines= cur.fetchall()
-                    pins=[]
-                    for i in pines: 
-                        pins.append(i[0])
+                    pines= entered_pin
                     # print(pins)
-                    if entered_pin in pins:
+                    if entered_pin == pines:
                         break
                     else:
                         print("Incorrrect Pin")
@@ -79,9 +73,15 @@ class Account:
                 savings= 0
                 budget=0 
                 pin=str(input("Create a 4 digit pin: "))
+                pins=[]
+                for i in pines: 
+                    pins.append(i[0])
                 cur.execute("INSERT INTO Account Values(?, ?, ?, ?, ? )", (name, amount, savings, pin, budget))
                 con.commit()
                 print('Your Account is Created.')
+                names=[]
+                for i in acc_names:
+                    names.append(i[0])
                 break
             elif acc_option == "Quit".lower():
                 "GOODBYE"
