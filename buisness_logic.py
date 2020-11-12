@@ -53,7 +53,7 @@ class Account:
                 names=[]
                 for i in acc_names:
                     names.append(i[0])
-                # print(names)
+                print(names)
                 if name in names:
                     entered_pin=input("Enter your pin: ")
                     cur.execute("""SELECT Pin FROM Account""")
@@ -62,8 +62,8 @@ class Account:
                     pins=[]
                     for i in pines: 
                         pins.append(i[0])
-                    # print(pins)
-                    if entered_pin == pines:
+                    print(pins)
+                    if entered_pin in pins:
                         break
                     else:
                         print("Incorrrect Pin")
