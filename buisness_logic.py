@@ -91,7 +91,10 @@ class Account:
         deposits = input('Enter the amount to deposit: $')
         while True:
             try:
+                print("Inside Deposit")
+                print(self.balance)
                 self.balance += float(deposits)
+                print(self.balance)
                 cur.execute("SELECT * FROM Account")
                 cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                 print(f"Your New Balance = ${self.balance :.2f} ")
@@ -129,12 +132,14 @@ class Account:
         entry={"Name": self.name, "Amount": num, "Reason": reason}
         withdraws_j.append(entry)
         while True:
+            print("!!!!!!!")
+            print(self.balance)
             if(float(num) > self.balance):
                 print('Insufficient Balance!')
                 print(f"Your Balance = ${self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
                 break
-            if self.budget > self.balance:
+            if self.budget > self.balance[0]:
                 answer_budget=input(
                     """You are going over your budget!
                     Do you still want to make the transaction?""")
@@ -156,7 +161,7 @@ class Account:
                 print(key["Amount"], key["Reason"])
 
     def enquiry(self):
-        cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name))
+        cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name,))
         self.balance = cur.fetchall()
         print(f"Your Balance = ${self.balance}")
  
