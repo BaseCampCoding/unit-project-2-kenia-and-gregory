@@ -11,19 +11,19 @@ class Account:
         self.budget= 0
         
     def if_acc(self):
-        db.cur.execute("SELECT Checkings FROM Account")
-        Money1 = db.cur.fetchall()
-        Money= []
-        for i in Money1:
-            Money.append(i[0])
-        self.balance += float(Money[0])
+        # db.cur.execute("SELECT Checkings FROM Account")
+        # Money1 = db.cur.fetchall()
+        # Money= []
+        # for i in Money1:
+        #     Money.append(i[0])
+        # self.balance += float(Money[0])
 
-        db.cur.execute("SELECT Savings FROM Account")
-        Savings1 = db.cur.fetchall()
-        Savings = []
-        for i in Savings1:
-            Savings.append(i[0])
-        self.savings += float(Savings[0])
+        # db.cur.execute("SELECT Savings FROM Account")
+        # Savings1 = db.cur.fetchall()
+        # Savings = []
+        # for i in Savings1:
+        #     Savings.append(i[0])
+        # self.savings += float(Savings[0])
 
         # db.cur.execute("SELECT Checkings FROM Account")
         # Budget1 = db.cur.fetchall()
@@ -81,7 +81,7 @@ class Account:
             elif acc_option == "Quit".lower():
                 "GOODBYE"
                 quit()
-                
+
     def deposit(self):
         deposits = input('Enter the amount to deposit: ')
         while True:
