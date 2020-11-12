@@ -10,6 +10,11 @@ with open("withdraw_activity.json") as file:
     reader = json.load(file)
     withdraws_j = list(reader)
 
+with open("transactions_to_savings.json") as file:
+    reader = json.load(file)
+    savings_j = list(reader)
+
+
 
 class Account:
     def __init__(self): 
@@ -19,27 +24,6 @@ class Account:
         self.budget= 0
         
     def if_acc(self):
-        # db.cur.execute("SELECT Checkings FROM Account")
-        # Money1 = db.cur.fetchall()
-        # Money= []
-        # for i in Money1:
-        #     Money.append(i[0])
-        # self.balance += float(Money[0])
-
-        # db.cur.execute("SELECT Savings FROM Account")
-        # Savings1 = db.cur.fetchall()
-        # Savings = []
-        # for i in Savings1:
-        #     Savings.append(i[0])
-        # self.savings += float(Savings[0])
-
-        # db.cur.execute("SELECT Checkings FROM Account")
-        # Budget1 = db.cur.fetchall()
-        # Budget = []
-        # for i in Budget1:
-        #     Budget.append(i[0])
-        # self.budget += float(Budget[0])
-
         while True:
             acc_option=input(Fore.LIGHTMAGENTA_EX+
             """ Do you have an account?
@@ -124,7 +108,7 @@ class Account:
 
     def view_budget(self):
         print(f"Your Budget is $ {self.budget}")
-        # print(f"The limit on your account is {things :.2f} ")
+
 
     def withdraw(self):
         num =input('Enter the amount to withdraw: $')
@@ -140,7 +124,7 @@ class Account:
             if self.budget > self.balance:
                 answer_budget=input(
                     """You are going over your budget!
-                    Do you still want to make the transaction?""")
+                Do you still want to make the transaction?""")
                 if answer_budget == "Yes".lower():
                     self.balance -= float(num)
                     cur.execute("SELECT * FROM Account")
@@ -188,7 +172,11 @@ class Account:
             con.commit()
             cur.execute("UPDATE Account SET Savings = ? WHERE Name = ?", (self.savings, self.name))
             con.commit()
+            savings={"Name": self.name, "Amount": number}
+            savings_j.append(savings)
             print(f"Your New Savings Balance= ${self.savings :.2f}")
+            with open("savings.json", "w", newline='') as file:
+                    json.dump(savings_j, file)
 
     def view_all(self):
         ALL_Data = (f"{self.name}, ${self.balance}, ${self.savings}, ${self.budget}")
