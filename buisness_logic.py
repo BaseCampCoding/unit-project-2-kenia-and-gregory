@@ -10,7 +10,7 @@ with open("withdraw_activity.json") as file:
     reader = json.load(file)
     withdraws_j = list(reader)
 
-with open("transactions_to_savings.json") as file:
+with open("savings.json") as file:
     reader = json.load(file)
     savings_j = list(reader)
 
