@@ -63,7 +63,7 @@ class Account:
                     for i in pines: 
                         pins.append(i[0])
                     print(pins)
-                    if entered_pin in pines:
+                    if entered_pin in pins:
                         break
                     else:
                         print("Incorrrect Pin")
