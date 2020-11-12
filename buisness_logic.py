@@ -144,7 +144,8 @@ class Account:
                 break
 
     def enquiry(self):
-        cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name))
+        name = self.name
+        cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (name,))
         self.balance = cur.fetchall()
         print(f"Your Balance = ${self.balance}")
  
