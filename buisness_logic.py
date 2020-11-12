@@ -41,12 +41,12 @@ class Account:
         # self.budget += float(Budget[0])
 
         while True:
-            acc_option=input(
+            acc_option=input(Fore.LIGHTMAGENTA_EX+
             """ Do you have an account?
         -Yes
         -No
         -Quit
-        > """)
+        > """ +Style.RESET_ALL)
             if acc_option=="Yes".lower():
                 name= input("Enter your USERNAME: ")
                 cur.execute("""SELECT Name FROM Account""")
@@ -171,7 +171,7 @@ class Account:
     def view_withdraws(self):
         for key in withdraws_j:
             if key["Name"] == self.name:
-                print(key["Amount"], key["Reason"])
+                print(Fore.RED+ "AMOUNT $", key["Amount"]+"- Purpose for Withdrawal: " +key["Reason"]+Style.RESET_ALL)
 
     def enquiry(self):
         cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name,))
