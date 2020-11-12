@@ -120,13 +120,11 @@ class Account:
                 print(Fore.RED +'Insufficient Balance!'+ Style.RESET_ALL)
                 print(f"Your Balance = ${self.balance :.2f} ")
                 num = input('Enter the amount to withdraw: ')
+                self.balance -= float(num)
                 break
             if self.budget > self.balance:
-                answer_budget=input(
-                    """You are going over your budget!
-                Do you still want to make the transaction?""")
+                answer_budget=input("You are going over your budget! \n Do you still want to make the transaction?")
                 if answer_budget == "Yes".lower():
-                    self.balance -= float(num)
                     cur.execute("SELECT * FROM Account")
                     cur.execute("UPDATE Account SET Checkings = ? WHERE Name = ?", (self.balance, self.name))
                     con.commit()
@@ -135,6 +133,7 @@ class Account:
                     print(f"Your Balance = ${self.balance:.2f} ")
                     break
                 elif answer_budget == "No".lower():
+                    self.balance += float(num)
                     break
 
             else:
