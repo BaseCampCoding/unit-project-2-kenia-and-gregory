@@ -155,11 +155,11 @@ class Account:
 
     def enquiry(self):
         cur.execute('SELECT Checkings FROM Account WHERE Name = ?', (self.name,))
-        print(f"Your Balance = ${cur.fetchall()}")
+        print(f"Your Checkings Balance = ${cur.fetchall()}")
  
     def Savings_enquiry(self):
         cur.execute('SELECT Savings FROM Account WHERE Name = ?', (self.name,))
-        print(f"Your Balance = ${cur.fetchall()} ")
+        print(f"Your Savings Balance = ${cur.fetchall()} ")
 
     def add_to_savings(self):
         number=(input("How much do you want to transfer to Savings Account? $"))
